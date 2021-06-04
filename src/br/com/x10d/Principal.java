@@ -21,7 +21,7 @@ public class Principal extends Application {
 	private Label labelPontuacao;
 	private KeyCode direcaoAtual;
 	
-	private static final int VELOCIDADE_JOGO = 100;
+	private static final int VELOCIDADE_JOGO = 500;
 	private static final int TAMANHO_TELA = 500;
 	private static int POSICAO_HORIZONTAL_COLUNA_X = 240;
 	private static int POSICAO_VERTICAL_LINHA_Y = 240;
@@ -73,7 +73,6 @@ public class Principal extends Application {
 		AnimationTimer timer = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
-				System.out.println(now);
 				loopDoJogo();
 			}
 		};
@@ -89,6 +88,7 @@ public class Principal extends Application {
 			if(cobraComeuComida()) {
 				criaNovaComidaPosicionandoNoJogo();
 				adicionaPontuacao();
+				aumentaTamanhoCobra();
 			}
 			verificaFimDeJogo();
 
@@ -97,6 +97,26 @@ public class Principal extends Application {
 		}				
 	}
 	
+	private void aumentaTamanhoCobra() {
+		
+		System.out.println("cobrinha.getWidth: "+cobrinha.getWidth());
+		System.out.println("cobrinha.getHeight: "+cobrinha.getHeight());
+		//System.out.println("cobrinha.getX: "+cobrinha.getX());
+		//System.out.println("cobrinha.getY: "+cobrinha.getY());
+		
+		cobrinha.setWidth(cobrinha.getWidth());
+		cobrinha.setHeight(cobrinha.getHeight()+TAMANHO_QUADRADO);
+		//cobrinha.setX(POSICAO_HORIZONTAL_COLUNA_X);
+		//cobrinha.setY(POSICAO_VERTICAL_LINHA_Y);
+
+		System.out.println("#########################");
+		System.out.println("cobrinha.getWidth: "+cobrinha.getWidth());
+		System.out.println("cobrinha.getHeight: "+cobrinha.getHeight());
+		//System.out.println("cobrinha.getX: "+cobrinha.getX());
+		//System.out.println("cobrinha.getY: "+cobrinha.getY());
+		
+		
+	}
 	private void teclaPressionada(KeyEvent event) {	
 		KeyCode teclaPressionada = event.getCode();
 		if(teclaPressionada == KeyCode.UP) {
